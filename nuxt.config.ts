@@ -97,8 +97,15 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: "chezju.restaurant",
-    name: "Chez Ju' | Bar à Salades Paris 8ème",
+    url: process.env.NUXT_PUBLIC_SITE_URL || "https://chezju.restaurant",
+  },
+
+  sitemap: {
+    sources: ["/api/sitemap"],
+  },
+
+  robots: {
+    disallow: ["/slice-simulator", "/api/preview"],
   },
 
   compatibilityDate: "2025-01-06",

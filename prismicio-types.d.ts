@@ -60,6 +60,7 @@ export type CategoryDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
+  | ContactFormSlice
   | OurStoryPageSlice
   | MenuSlice
   | TextImageSlice
