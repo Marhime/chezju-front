@@ -174,7 +174,7 @@ onBeforeUnmount(() => {
         :class="['mb-5 lg:mb-0', isDesktop ? `lg:absolute item-${index}` : '']"
       >
         <p
-          class="bg-light text-primary font-serif font-extrabold p-3 text-xl lg:text-3xl rounded-sm xl:w-fit shadow-lg hover:scale-105 transition-transform cursor-pointer"
+          class="bg-light text-primary font-serif font-extrabold p-3 text-xl lg:text-3xl rounded-sm xl:w-fit shadow-lg"
         >
           {{ item.headline }}
         </p>
