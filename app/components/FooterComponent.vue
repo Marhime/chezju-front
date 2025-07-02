@@ -72,7 +72,7 @@ const data = app.$settings as Content.SettingsDocumentData;
       </ul>
     </div>
     <div class="bg-primary text-light text-center pb-4">
-      <p class="text-sm">
+      <p class="text-xs md:text-sm">
         © {{ new Date().getFullYear() }} Chez Ju. Tous droits réservés. Site
         réalisé par
         <a
