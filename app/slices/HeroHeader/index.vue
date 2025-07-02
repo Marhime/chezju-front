@@ -34,7 +34,9 @@ const { slice } = defineProps(
         {{ slice.primary.title }}
       </h1>
 
-      <div class="flex items-center justify-center gap-4 mt-6 md:mt-5">
+      <div
+        class="flex flex-col md:flex-row items-center justify-center gap-4 mt-6 md:mt-5"
+      >
         <p
           class="md:block text-sm md:text-lg text-foreground uppercase font-black"
         >
