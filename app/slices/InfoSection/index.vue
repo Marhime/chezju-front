@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import type { Content } from "@prismicio/client";
+import { isFilled, type Content } from "@prismicio/client";
+
+const app = useNuxtApp();
+const data = app.$settings as Content.SettingsDocumentData;
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -58,11 +61,21 @@ const { slice } = defineProps(
     </div>
     <div class="flex justify-center mt-20">
       <PrismicLink
+        v-if="isFilled.link(slice.primary.cta)"
         :field="slice.primary.cta"
         class="inline-block px-4 py-2.5 bg-light rounded-sm text-lg transition uppercase font-black text-secondary"
       >
         {{ slice.primary.cta.text }}
       </PrismicLink>
+      <a
+        v-else
+        :href="data?.click_collect_url || ''"
+        class="inline-block px-4 py-2.5 bg-light rounded-sm text-lg transition uppercase font-black text-secondary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{ slice.primary.cta?.text || "Commander" }}
+      </a>
     </div>
   </section>
 </template>

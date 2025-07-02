@@ -3,6 +3,9 @@ import { NuxtImg } from "#components"; // important pour auto-import
 
 import type { Content } from "@prismicio/client";
 
+const app = useNuxtApp();
+const data = app.$settings as Content.SettingsDocumentData;
+
 const { slice } = defineProps(
   getSliceComponentProps<Content.HeroHeaderSlice>([
     "slice",
@@ -41,12 +44,14 @@ const { slice } = defineProps(
           {{ slice.primary.before_cta }}
         </p>
 
-        <PrismicLink
-          :field="slice.primary.cta"
+        <a
+          :href="data?.click_collect_url || ''"
           class="inline-block px-4 py-2.5 bg-primary rounded-sm text-lg transition uppercase font-black"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {{ slice.primary.cta?.text || "Commander" }}
-        </PrismicLink>
+        </a>
       </div>
     </div>
   </section>

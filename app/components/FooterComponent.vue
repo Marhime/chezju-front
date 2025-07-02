@@ -57,15 +57,15 @@ const data = app.$settings as Content.SettingsDocumentData;
           <p>NOUS SUIVRE</p>
           <ul>
             <li v-for="(item, index) in data.social_links" :key="index">
-              <NuxtLink to="/" class="block">
+              <PrismicLink :field="item.link" class="block">
                 <NuxtImg
                   v-if="item.logo.url"
                   :src="item.logo.url"
                   preset="prismicImage"
                   :alt="item.logo.alt || 'Logo'"
-                  class="xl:h-10"
+                  class="h-8 xl:h-10"
                 />
-              </NuxtLink>
+              </PrismicLink>
             </li>
           </ul>
         </li>
@@ -73,16 +73,18 @@ const data = app.$settings as Content.SettingsDocumentData;
     </div>
     <div class="bg-primary text-light text-center pb-4">
       <p class="text-xs md:text-sm">
-        © {{ new Date().getFullYear() }} Chez Ju. Tous droits réservés. Site
-        réalisé par
-        <a
-          class="hover:text-light/80"
-          href="contact@marhi.me"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          marhime.</a
-        >
+        © {{ new Date().getFullYear() }} Chez Ju. Tous droits réservés.
+        <span class="block md:inline"
+          >Site réalisé par
+          <a
+            class="hover:text-light/80"
+            href="contact@marhi.me"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            marhime.</a
+          >
+        </span>
       </p>
     </div>
   </footer>

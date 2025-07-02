@@ -20,10 +20,10 @@ const itemRefs = ref<HTMLElement[]>([]);
 
 // Images des étapes de création
 const stepImages = computed(() => [
-  slice.primary.step_1_image?.url || slice.primary.step_1_image?.url,
-  slice.primary.step_2_image?.url || slice.primary.step_1_image?.url,
-  slice.primary.step_3_image?.url || slice.primary.step_1_image?.url,
-  slice.primary.step_4_image?.url || slice.primary.step_1_image?.url,
+  slice.primary.step_1_image?.url || slice.primary.step_4_image?.url,
+  slice.primary.step_2_image?.url || slice.primary.step_4_image?.url,
+  slice.primary.step_3_image?.url || slice.primary.step_4_image?.url,
+  slice.primary.step_4_image?.url || slice.primary.step_4_image?.url,
 ]);
 
 // Fonction pour setter les refs correctement

@@ -32,7 +32,7 @@ function redirectToPage(e: Event, page: LinkField) {
 
     <NuxtLink
       to="/"
-      class="text-xl font-bold lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2"
+      class="text-xl font-bold lg:absolute lg:left-1/2 lg:transform lg:-translate-x-1/2 cursor-pointer"
     >
       <NuxtImg
         v-if="data?.logo.url"
