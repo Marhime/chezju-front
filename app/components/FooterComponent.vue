@@ -74,7 +74,7 @@ const data = app.$settings as Content.SettingsDocumentData;
     <div class="bg-primary text-light text-center pb-4">
       <p class="text-xs md:text-sm">
         © {{ new Date().getFullYear() }} Chez Ju. Tous droits réservés.
-        <span class="block md:inline"
+        <span class="block mt-2 md:mt-0 md:inline"
           >Site réalisé par
           <a
             class="hover:text-light/80"
