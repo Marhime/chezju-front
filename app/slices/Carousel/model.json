@@ -1,0 +1,115 @@
+{
+  "id": "carousel",
+  "type": "SharedSlice",
+  "name": "Carousel",
+  "description": "Carousel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "em"
+          }
+        },
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Sous titre",
+            "placeholder": ""
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "CTA",
+            "placeholder": "Voir le menu",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "Produits",
+            "repeat": true,
+            "fields": {
+              "produit": {
+                "type": "Link",
+                "config": {
+                  "label": "Produit",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "product"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "category",
+      "name": "Catégorie",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "em"
+          }
+        },
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Sous titre",
+            "placeholder": ""
+          }
+        },
+        "cta": {
+          "type": "Link",
+          "config": {
+            "label": "CTA",
+            "placeholder": "Voir le menu",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "category": {
+          "type": "Link",
+          "config": {
+            "label": "Catégorie",
+            "select": "document",
+            "repeat": false,
+            "customtypes": [
+              "category"
+            ]
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

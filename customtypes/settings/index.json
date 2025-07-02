@@ -1,0 +1,122 @@
+{
+  "format": "custom",
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo ",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "phone": {
+        "type": "Text",
+        "config": {
+          "label": "Numéro de téléphone",
+          "placeholder": ""
+        }
+      },
+      "email": {
+        "type": "Text",
+        "config": {
+          "label": "Mail",
+          "placeholder": ""
+        }
+      },
+      "address": {
+        "type": "Text",
+        "config": {
+          "label": "Adresse",
+          "placeholder": ""
+        }
+      },
+      "opening_hours": {
+        "type": "Text",
+        "config": {
+          "label": "Horaires",
+          "placeholder": ""
+        }
+      },
+      "opening_days": {
+        "type": "Text",
+        "config": {
+          "label": "Jours d'ouverture",
+          "placeholder": ""
+        }
+      },
+      "navItems": {
+        "type": "Link",
+        "config": {
+          "label": "Élements de navigation",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": true
+        }
+      },
+      "click_collect_url": {
+        "type": "Text",
+        "config": {
+          "label": "Lien Click & Collect",
+          "placeholder": ""
+        }
+      },
+      "deliveroo_url": {
+        "type": "Link",
+        "config": {
+          "label": "Deliveroo URL",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "ubereats_url": {
+        "type": "Link",
+        "config": {
+          "label": "UberEats URL",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": true,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "social_links": {
+        "type": "Group",
+        "config": {
+          "label": "Réseaux sociaux",
+          "repeat": true,
+          "fields": {
+            "logo": {
+              "type": "Image",
+              "config": {
+                "label": "Logo",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Lien",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": true,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
