@@ -26,10 +26,34 @@
             "placeholder": ""
           }
         },
-        "image": {
+        "step_1_image": {
           "type": "Image",
           "config": {
-            "label": "Image",
+            "label": "Image étape 1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "step_2_image": {
+          "type": "Image",
+          "config": {
+            "label": "Image étape 2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "step_3_image": {
+          "type": "Image",
+          "config": {
+            "label": "Image étape 3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "step_4_image": {
+          "type": "Image",
+          "config": {
+            "label": "Image étape 4",
             "constraint": {},
             "thumbnails": []
           }

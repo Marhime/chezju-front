@@ -15,7 +15,7 @@ const { slice } = defineProps(
 
 <template>
   <section
-    class="hero-header flex flex-col justify-center items-center text-center px-2 relative min-h-[50vh] xl:min-h-[calc(100vh-5rem)] 2xl:min-h-[80vh]"
+    class="hero-header flex flex-col justify-center items-center text-center px-2 relative min-h-[80vh] xl:min-h-[calc(100vh-5rem)] 2xl:min-h-[80vh]"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >

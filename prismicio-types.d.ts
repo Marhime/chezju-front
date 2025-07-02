@@ -648,14 +648,44 @@ export interface FeatureHighlightSliceDefaultPrimary {
   description: prismic.KeyTextField;
 
   /**
-   * Image field in *FeatureHighlight → Default → Primary*
+   * Image étape 1 field in *FeatureHighlight → Default → Primary*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: feature_highlight.default.primary.image
+   * - **API ID Path**: feature_highlight.default.primary.step_1_image
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  image: prismic.ImageField<never>;
+  step_1_image: prismic.ImageField<never>;
+
+  /**
+   * Image étape 2 field in *FeatureHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_highlight.default.primary.step_2_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  step_2_image: prismic.ImageField<never>;
+
+  /**
+   * Image étape 3 field in *FeatureHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_highlight.default.primary.step_3_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  step_3_image: prismic.ImageField<never>;
+
+  /**
+   * Image étape 4 field in *FeatureHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: feature_highlight.default.primary.step_4_image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  step_4_image: prismic.ImageField<never>;
 
   /**
    * Elements field in *FeatureHighlight → Default → Primary*
