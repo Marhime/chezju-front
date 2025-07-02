@@ -36,15 +36,30 @@ const setItemRef = (
   }
 };
 
-onMounted(() => {
-  if (window.innerWidth < 1000) {
-    // Si la largeur de l'écran est inférieure à 1000px, on ne lance pas l'animation
-    imageRef.value?.setAttribute("src", stepImages.value[3] || "");
-    return;
-  }
-  nextTick(() => {
-    if (!sectionRef.value) return;
+// État responsive
+const isDesktop = ref(false);
 
+const checkScreenSize = () => {
+  isDesktop.value = window.innerWidth >= 1024;
+};
+
+onMounted(() => {
+  // Vérification initiale
+  checkScreenSize();
+
+  // Listener pour les redimensionnements
+  window.addEventListener("resize", checkScreenSize);
+
+  nextTick(() => {
+    if (!sectionRef.value || !imageRef.value) return;
+
+    // Configuration mobile : image finale directement
+    if (!isDesktop.value) {
+      imageRef.value.src = stepImages.value[3] || stepImages.value[0] || "";
+      return;
+    }
+
+    // Animation desktop uniquement
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.value,
@@ -55,41 +70,45 @@ onMounted(() => {
       },
     });
 
-    if (
-      !itemRefs.value[0] ||
-      !itemRefs.value[1] ||
-      !itemRefs.value[2] ||
-      !itemRefs.value[3] ||
-      !stepImages.value[0] ||
-      !stepImages.value[1] ||
-      !stepImages.value[2] ||
-      !stepImages.value[3]
-    )
-      return;
+    // Vérifications de sécurité
+    const hasAllItems =
+      itemRefs.value.length === 4 &&
+      itemRefs.value.every((item) => item !== null);
+    const hasAllImages = stepImages.value.every((img) => img);
 
-    tl.fromTo(
-      [itemRefs.value[0], itemRefs.value[1]],
-      {
-        opacity: 0,
-        y: 50,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "back.out(1.2)",
-      }
-    )
+    if (!hasAllItems || !hasAllImages) {
+      console.warn("FeatureHighlight: Missing items or images for animation");
+      return;
+    }
+
+    // Animation séquentielle
+    tl
+      // Première paire d'items (0, 1)
+      .fromTo(
+        [itemRefs.value[0], itemRefs.value[1]],
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "back.out(1.2)",
+        }
+      )
+      // Changement image vers étape 2
       .call(
         () => {
-          if (imageRef.value) {
+          if (imageRef.value && stepImages.value[2]) {
             imageRef.value.src = stepImages.value[2];
           }
         },
-        null,
-        "<"
+        [],
+        "<" // Pendant l'animation des items
       )
 
+      // Deuxième paire d'items (2, 3)
       .fromTo(
         [itemRefs.value[2], itemRefs.value[3]],
         {
@@ -103,19 +122,21 @@ onMounted(() => {
           ease: "back.out(1.2)",
         }
       )
+      // Changement vers image finale
       .call(
         () => {
-          if (imageRef.value) {
+          if (imageRef.value && stepImages.value[3]) {
             imageRef.value.src = stepImages.value[3];
           }
         },
-        null,
+        [],
         "<"
       );
   });
 });
 
 onBeforeUnmount(() => {
+  window.removeEventListener("resize", checkScreenSize);
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 });
 </script>
@@ -135,43 +156,29 @@ onBeforeUnmount(() => {
     </p>
 
     <div class="lg:px-12 lg:py-44 relative w-full max-w-[500px] mx-auto">
-      <!-- Image animée -->
-      <div class="relative">
-        <!-- <img
-          v-for="(image, index) in stepImages"
-          :key="index"
-          :src="image"
-          :alt="slice.primary.step_1_image?.alt || 'Salade en création'"
-          class="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500 z-20"
-          :class="{ 'opacity-0': index !== 0 }"
-        /> -->
+      <!-- Image responsive -->
+      <div class="relative mb-8 lg:mb-0">
         <img
           ref="imageRef"
-          :src="stepImages[0] ?? ''"
+          :src="stepImages[0] || ''"
           :alt="slice.primary.step_1_image?.alt || 'Salade en création'"
           class="aspect-square mx-auto w-full object-contain"
         />
-        <img
-          v-if="stepImages[0]"
-          :src="stepImages[0]"
-          :alt="slice.primary.step_2_image?.alt || 'Salade en création'"
-          class="absolute top-0 left-0 w-full h-full object-contain opacity-0 transition-opacity duration-500 z-30"
-        />
       </div>
 
-      <!-- Items animés -->
+      <!-- Items - Stack mobile, absolus desktop -->
       <div
         v-for="(item, index) in slice.primary.items"
         :key="index"
         :ref="(el) => setItemRef(el, index)"
-        :class="`mb-5 lg:mb-0 lg:absolute item-${index}`"
+        :class="['mb-5 lg:mb-0', isDesktop ? `lg:absolute item-${index}` : '']"
       >
         <p
-          class="bg-light text-primary font-serif font-extrabold p-3 text-xl lg:text-3xl rounded-sm xl:w-fit shadow-lg"
+          class="bg-light text-primary font-serif font-extrabold p-3 text-xl lg:text-3xl rounded-sm xl:w-fit shadow-lg hover:scale-105 transition-transform cursor-pointer"
         >
           {{ item.headline }}
         </p>
-        <div class="mt-2 text-sm">
+        <div class="mt-2 text-sm opacity-90">
           <PrismicRichText :field="item.description" />
         </div>
       </div>
@@ -180,7 +187,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style>
-/* Positions des items */
+/* Positions absolues desktop uniquement */
 @media (min-width: 1024px) {
   .item-0 {
     top: 8rem;
@@ -190,19 +197,19 @@ onBeforeUnmount(() => {
   .item-1 {
     top: 10rem;
     right: 7rem;
-    width: 350px;
+    max-width: 350px;
     transform: translateX(100%);
   }
   .item-2 {
     bottom: 10rem;
     right: 8rem;
-    width: 300px;
+    max-width: 300px;
     transform: translateX(-100%);
   }
   .item-3 {
     bottom: 10rem;
     right: 5rem;
-    width: 300px;
+    max-width: 300px;
     transform: translateX(100%);
   }
 }
@@ -216,27 +223,27 @@ onBeforeUnmount(() => {
   .item-1 {
     top: 10rem;
     right: 0rem;
-    width: 350px;
     transform: translateX(100%);
   }
   .item-2 {
     bottom: 10rem;
     left: 3rem;
-    width: 300px;
     transform: translateX(-100%);
   }
   .item-3 {
     bottom: 8rem;
     right: 3rem;
-    width: 300px;
     transform: translateX(100%);
   }
 }
 
-.item-0:hover,
-.item-1:hover,
-.item-2:hover,
-.item-3:hover {
-  z-index: 10;
+/* Hover uniquement desktop */
+@media (min-width: 1024px) {
+  .item-0:hover,
+  .item-1:hover,
+  .item-2:hover,
+  .item-3:hover {
+    z-index: 10;
+  }
 }
 </style>
