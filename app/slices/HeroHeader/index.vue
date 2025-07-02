@@ -15,7 +15,7 @@ const { slice } = defineProps(
 
 <template>
   <section
-    class="hero-header flex flex-col items-center text-center px-5 pt-32 relative min-h-[50vh] xl:min-h-[calc(100vh-5rem)] 2xl:min-h-[80vh]"
+    class="hero-header flex flex-col justify-center items-center text-center px-5 relative min-h-[50vh] xl:min-h-[calc(100vh-5rem)] 2xl:min-h-[80vh]"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
   >
@@ -27,9 +27,7 @@ const { slice } = defineProps(
       class="absolute top-0 left-0 w-full h-full object-cover"
     />
     <div class="overlay absolute inset-0 bg-dark opacity-20" />
-    <div
-      class="absolute top-1/2 transform -translate-y-1/2 z-10 text-light p-2"
-    >
+    <div class="relative text-light p-2">
       <h1 class="mb-4 m-heading-xl max-w-[1033px] leading-[1.2] font-black">
         {{ slice.primary.title }}
       </h1>
