@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MaintenanceMode />
     <!-- Appel du composant Navbar -->
     <NavbarMenu />
     <!-- Le contenu de la page -->
